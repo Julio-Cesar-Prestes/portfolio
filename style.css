@@ -1,2 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');/**Import de fonts diferentes*/
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');/**Import de Icons diferentes*/
+*{/**Asterisco aplica à todas as imagens da página*/
+    margin: 0;/**retira as margens de todos os elementos do site*/
+    padding: 0;
+}
+
+header{
+    width: 100%;
+    height: 100vh;/**vh: view height - Altura da visualição*/
+}
+
+.img-wrapper{/**Encapsulamento - Envelopamento*/
+    /**ponto significa que está apontando para uma classe*/
+    /**esta classe .img.wrapper está dentro do header e vai ocupar 100% da largura e da altura*/
+    width: 100%;
+    height: 100%;
+}
+.img-wrapper img{/**Usa a classe ao inves da ID para formatar a imagem*/
+    width: 100%;/**Obriga a imagem à usar a mesma formatação do componente Pai que é a classe img.wrapper*/
+    height: 100%;
+}
