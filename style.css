@@ -25,7 +25,7 @@ header{
     height: 100%;
     object-fit: cover;/**Como a imagem não está na página como elemento e sim envelopada no img-wrapper e o object-fit vai especificar com este elemento vai ser colocado na página. Cover vai cobrir totalmente a div com a imagem*/
     opacity: 0.5;
-    animation: zoom 25s timing-function delay iteration-count direction fill-mode;
+    animation: zoom 25s;
     /**name duration timing-function delay iteration-count direction fill-mode;*/
 }
 @keyframes zoom{/**São quadros - chaves da animação - Faz a primeira e último quadro e software faz o restante*/
@@ -49,6 +49,9 @@ header{
     text-shadow: .3rem .4rem 2px rgba(0, 0, 0, .4);/**Propriedades: Distancia à direita(.2rem), distancia abaixo(.4rem), blur(2px) (sombra embaçada)  e cor da fonte(rgba(0,0,0,.4)*/
     line-height: 3.5rem;/**Espaçamento entre as linhas do texto*/
     margin-bottom: 2rem;/**Espaçamento entre o texto abaixo*/
+    opacity: 0;/**O texto na animação não aparece no inicio*/
+    animation: movebanner 1s 0.5s forwards;/**Faz a animação do texto entrar com delay de 0.5segundos*/
+
 }
 .banner p{
     font-family: "Josefin Slab" , serif;
@@ -56,6 +59,8 @@ header{
     font-size: 2rem;
     text-shadow: .2rem .2rem rgba(0, 0, 0, .4);
     margin-bottom: 2rem;/**Espaçamento para o botão abaixo*/
+    opacity: 0;/**O texto na animação não aparece no inicio*/
+    animation: movebanner 1s 0.7s forwards;/**Faz a animação do texto entrar com 0.7segundos*/
 }
 .banner button{
     font-family: "Muli", serif;
@@ -74,9 +79,20 @@ header{
     border: none;
     border-radius: 5px;/**Arrendodamento (Suavidade) da borda*/
     cursor: pointer;/**Indica ao usuário uma ação no botão*/
+    opacity: 0;/**O texto na animação não aparece no inicio*/
+    animation: movebanner 1s 0.9s forwards;/**Faz a animação do texto entrar com delay de 0.9segundos*/
 }
 .banner button:hover{/**Pseudo classe hover indica animação*/
     opacity: 0.8;/**Indica interação (dá uma apagadinha no botão)*/
     color: #000;/**Muda a cor da fonte para preto*/
-
+}
+@keyframes movebanner{/**Cria animação no texto*/
+    0%{
+        transform: translatey(10rem) rotatey(-30deg);/**Inicio da animação*/
+    }
+    100%{
+        transform: translatey(0) rotatey(0);/**Final da animação*/
+        opacity: 1;/**Animação do texto aparece no final da animação*/
+    }
+}
 
