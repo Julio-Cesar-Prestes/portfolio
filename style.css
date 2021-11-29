@@ -3,6 +3,81 @@
 *{/**Asterisco aplica à todas as imagens da página*/
     margin: 0;/**retira as margens de todos os elementos do site*/
     padding: 0;
+    list-style: none;/**Retira os bullets do list item*/
+    text-decoration: none;/**Retira o sublinhado*/
+}
+
+:root{/**Criar uma variável com o elemento root*/
+    --font-primary: "Baloo Da 2", serif;
+    --font-secundary: "Josefin Slab 2", serif;
+    --font-action: "Muli", serif;
+}
+
+.hamburguer{/**Menu hamburguer*/
+    /*background-color: red;*/
+    width: 2rem;
+    height: 2rem;
+    position: fixed;/**Mantem o menu fixo na página*/
+    z-index: 100;/**Coloca o menu na frente dos outros elementos*/
+    right: 2rem;
+    top: 2rem;
+    display: flex;/**Linhas do menu*/
+    flex-direction: column;/**Espalhar as linhas no menu - uma encima da outra*/
+    justify-content: space-evenly;/**Espalhar os elementos para ver como se comportam no menu*/
+    cursor: pointer;/**Indica ao usuário uma ação no menu*/
+}
+
+.show-menu .hamburguer{/**Todo mundo que estiver dentro(for descendente) do show-menu, vai pegar esta formatação*/
+    right: 16rem;
+}
+
+.line {
+    width: 100%;
+    height: .1rem;
+    background-color: #fff;
+    box-shadow: 0.1rem 0.1rem 1px #000;/**Deslocamento eixo x, deslocamento eixo y, quanto vai borrar (Blur), cor da sombra*/
+    transition: transform 1s;/**Em todas as linhas, quando for aplicada uma transformação, vai durar 1 segundo*/
+}
+
+.show-menu #line1{
+    transform: rotate(45deg) translate(.3rem, .45rem);
+}
+
+.show-menu #line2{/*Quando a linha 1 aparecer a linha 2 desaparece*/
+    opacity: 0;
+    visibility: hidden;
+}
+
+.show-menu #line3{
+    transform: rotate(-45deg) translate(.3rem, -.45rem);
+}
+
+.hamburguer span{
+    position: absolute;
+    left: 3rem;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a044ff;
+    color: #ffffff;
+    font-family: var(--font-action);
+    opacity: 0;/**Por padrão não mostra*/
+}
+
+.hamburguer span::before{
+    content: "";
+    position: absolute;
+    border-right: .5rem solid #a044ff;
+    border-top: .5rem solid transparent;
+    border-left: .5rem solid transparent;
+    border-bottom: .5rem solid transparentf;
+    left: -1rem;
+}
+
+.show-menu .hamburguer:hover span{
+    opacity: 1;/**Só aparece se o manu estiver ativo (aberto) e o mousa sobre ele*/
 }
 
 header{
@@ -44,7 +119,7 @@ header{
 .banner h1{
     color: #ffffff;
     font-size: 3.5rem;/**Se usar tamanho em pixel usuário não pode aumentar o tamanho*//**Pode usar (1em) ou (1rem) que é relativa vai mudar conforme usuário alterar no site*/
-    font-family: "Josefin Slab" , serif;/**Josefin Slab baixado so site e está acima*/
+    font-family: var(--font-primary);
     font-weight: 200;/**Diminuir o negrito*/
     text-shadow: .3rem .4rem 2px rgba(0, 0, 0, .4);/**Propriedades: Distancia à direita(.2rem), distancia abaixo(.4rem), blur(2px) (sombra embaçada)  e cor da fonte(rgba(0,0,0,.4)*/
     line-height: 3.5rem;/**Espaçamento entre as linhas do texto*/
@@ -54,7 +129,7 @@ header{
 
 }
 .banner p{
-    font-family: "Josefin Slab" , serif;
+    font-family: var(--font-secundary);
     color: #ffffff;
     font-size: 2rem;
     text-shadow: .2rem .2rem rgba(0, 0, 0, .4);
@@ -63,7 +138,7 @@ header{
     animation: movebanner 1s 0.7s forwards;/**Faz a animação do texto entrar com 0.7segundos*/
 }
 .banner button{
-    font-family: "Muli", serif;
+    font-family: var(--font-action);
     color: #ffffff;
     /**font-size: 1.2rem; - Aumentar o tamanho da fonte*/
     text-transform: uppercase;/**Transformar em letras maiúsculas*/
@@ -96,3 +171,64 @@ header{
     }
 }
 
+.sidebar{
+    width: 20rem;
+    height: 100vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: -20rem;/**Joga o menu fora da tela*/
+    transition: all 1s;/*Coloca animação na entra/saida do menu lateral*/
+}
+
+.show-menu .sidebar{
+    right: 0;/**Se o elemento sidebar tiver também o show-menu, a posição dele vai ser 0 (inicial)*/
+}
+
+.menu{/**Este é a DIV*/
+    position: absolute;/**Terá posição absoluta*/
+    top: 40%;/**Desce um pouco na página*/
+    left: 50%;/**Coloca mais no meio*/
+    transform: translate(-50%, -50%);/**Com relação ao top e left vai ficar no meio*/
+}
+
+.menu-item{/**Este é o LI*/
+    text-align: center;/**Alinha os textos no centro*/
+    margin-bottom: .3rem;/**Espaçamento entre as linhas*/
+}
+
+.menu-link{/**Formatar os links*/
+    font-family: var(--font-action);
+    font-size: 2rem;
+    color: #555;
+    transition: color 1s;/**Faz com que ao mudar a cor do link demore um pouco mais*/
+}
+.menu-link:hover{
+    color: #6a3093 ;/**Ao clicar com o maouse muda a cor do link*/
+}
+
+.social-media{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    /*background-color: red;*/
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social-media i{
+    background-color: #6a3093;
+    color: rgba(255,255,255,1);
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;/**Deixa a borda arrendodada*/
+    transition: background-color 1s;/**Ao passar o mouse sobre os ícones, muda a cor mais suavemente*/
+}
+
+.social-media i:hover{
+    background-color: #a044ff;/**Ao passar o mouse nos icones mudam de cor-suavizam*/
+}
